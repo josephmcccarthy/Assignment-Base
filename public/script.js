@@ -1,26 +1,27 @@
 async function windowActions(){
-    const form = document.querySelector('.userform');
-    const search = document.querySelector('#name');
-    const targetList = document.querySelector('.target-list');
+  const form = document.querySelector('.userform');
+  const search = document.querySelector('#name');
+  const targetList = document.querySelector('.target-list');
     
-    const request = await fetch('/api');
-    const data = await request.json();   
+  const request = await fetch('/api');
+  const data = await request.json();   
 
-    form.addEventListener('submit', async(event) => {
-        event.preventDefault();
-        console.log('submit fired', search.value);
-        const filtered = data.filter((record) => record.city.toUpperCase() === search.value.toUpperCase());
-
-        filtered.forEach((item) =>{
-        const appendItem = document.createElement("li");
-        appenditem.classList += `${appendBox.classList} box`;
-        appendItem.innerText = item.city;
-        targetList.append(appendItem); 
-        });
+  form.addEventListener('submit', async(event) => {
+    event.preventDefault();
+    console.log('submit fired', search.value);
+    const filtered = data.filter((record) => record.city.toUpperCase() === search.value.toUpperCase());
+    filtered.forEach((item) =>{
+      const appendItem = document.createElement("li");
+      appenditem.classList += `${appendBox.classList} box`;
+      appendItem.innerText = item.city;
+      //appendItem.innerText = item.category
+      //appendItem.innerText = item.name
+      targetList.append(appendItem); 
+      });
     });
 
-    search.addEventListener('input', (event) =>{
-        console.log('input', event.target.value);
+  search.addEventListener('input', (event) =>{
+    console.log('input', event.target.value);
     });
 } 
 window.onload = windowActions;
