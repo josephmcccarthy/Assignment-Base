@@ -1,45 +1,40 @@
-const response ='https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
+async function getData() {
+    const response = await fetch('/api');
+    const data = await response.json();
+    return data
+}
+const resturants = []; 
+getData().then(data => resturants.push(...data));
 
-const cities = []; 
+function findMatches(matchWord, resturants) {
+    return resturants.filter(resturant => {
+        const regex = new RegExp(matchWord, 'gi');
+        return resturant.zip.match(regex);
+    });
+}
 
-
-fetch(response)
-    .then(blob => blob.json())
-    .then(data => cities.push(...data));
-
-    function findMatches(wordToMatch, cities) {
-        return cities.filter(place => {
-            //figures out what was searched
-            const regex = new RegExp(wordToMatch,'gi');
-            //filter results from restuarant name, city, zip code, and type 
-            return place.name.match(regex) || place.city.match(regex) || place.zip.match(regex) || place.type.match(regex)
-        });
-    }
-
-function displayMatches(){
-    const matchArray = findMatches(this.value,cities);
-    
-    const html = matchArray.map(place => {
-        
-        const regex = new RexExp(this.value, 'gi');
-        const cityName = place.city.replace(regex, `<span class="h1">${this.value}</span>`);
-        const restaurantName = place.name.replace(regex, `<span class="hl">${this.value}</span>`);
-        const restaurantType = place.type.replace(regex, `<span class="hl">${this.value}</span>`);
-        const zipCode = place.zip.replace(regex, `<span class="hl">${this.value}</span>`);
-
+function displayMatches() {
+    const matchArray = findMatches(this.value, resturants)
+    const html = matchArray.map(resturant => {
         return `
-            <li>
-            <span class ="restaurant"><b>${restaurantName}</b></span><br>
-            <span class ="restaurantType">${restaurantType}</span><br>
-            <span class="name">${cityName}</span><br>
-            <span class ="zipcode">${zipCode}</span><br><br>
-            </li>
+        <div class="block">
+        <ul>
+        <li class="results">
+            <span class="name"> ${resturant.name} </span><br />
+            <span class="category"> ${resturant.category} </span> <br />
+            <span class="address"> ${resturant.address_line_1} </span> <br />
+            <span class="city"> ${resturant.city}</span> <br />
+            <span class="zip">${resturant.zip}</span> 
+        </li>
+        </ul>
+        </div>
         `;
     }).join('');
     suggestions.innerHTML = html;
 }
 
-const searchInput = document.querySelector('.search');
-const suggestions = document.querySelector('.suggestions');
+const searchInput = document.querySelector('.search')
+const suggestions = document.querySelector('.suggestions')
 
-serachInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('change', displayMatches)
+searchInput.addEventListener('keyup', displayMatches)
