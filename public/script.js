@@ -1,26 +1,53 @@
 async function windowActions(){
     const form = document.querySelector('.userform');
     const search = document.querySelector('#name');
+    const targetList = document.querySelector('.target-list');
+    
     const request = await fetch('/api');
-    const data = await request.json();
-
+    const data = await request.json();   
 
     form.addEventListener('submit', async(event) => {
         event.preventDefault();
-        const display = data.filter((record) => record.city.toUpperCase() === search.value.toUpperCase());
+        console.log('submit fired', search.value);
+        const filtered = data.filter((record) => record.city.toUpperCase() === search.value.toUpperCase());
+
+        filtered.forEach((item) =>{
+        const appendItem = document.createElement("li");
+        appenditem.classList += `${appendBox.classList} box`;
+        appendItem.innerText = item.city;
+        targetList.append(appendItem); 
         });
+    });
 
-
+    search.addEventListener('input', (event) =>{
+        console.log('input', event.target.value);
+    });
+} 
 window.onload = windowActions;
 
-const request = await fetch('/api', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({data: search.value})
-});
-const data = await request.json();
+//const request = await fetch('/api', {
+//    method: 'POST',
+//    headers: {
+//        'Content-Type': 'application/json'
+//    },
+//    body: JSON.stringify({data: search.value})
+// });
+// const data = await request.json();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* const response ='https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
 
