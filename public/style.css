@@ -27,23 +27,22 @@ h1 {
   align-items: center;
   margin: auto;
   margin-bottom: 5px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-family: 'Creepster', cursive;
+  padding: 8px;
+  font-family: 'Roboto';
 }
 
 input {
- width: 40%;
+ width: 50%;
  text-align: center;
 }
 
 .cases li{
   color: white;
-  font-family: 'Creepster', cursive;
+  font-family: 'Roboto';
   padding: 5px;
   margin-bottom: 15px;
-  margin-right: 15px;
-  margin-left: 22px;
+  /* margin-right: 23px; */
+  margin-left: 29px;
   background: linear-gradient(rgb(255, 111, 145), rgb(132, 94, 194));
   text-align: center;
   width: 90%;

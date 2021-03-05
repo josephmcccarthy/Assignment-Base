@@ -18,8 +18,10 @@ function displayMatches() {
         const regex = new RegExp(this.value,'gi');
         return `
         <li>
-        <span class="name">${place.name} || </span>
-        <span class="address_line_1">${place.address_line_1} || </span>
+        <span class="name">${place.name} </span>
+        <address>
+        <span class="address_line_1">${place.address_line_1}</span>
+        </address>
         <span class="category">${place.category}</span>
         </li>
         `;
@@ -30,7 +32,7 @@ function displayMatches() {
 }
 
 const searchInput = document.querySelector('.text');
-const suggestions = document.querySelector('.suggestions');
+const suggestions = document.querySelector('.results');
 
 searchInput.addEventListener('change', displayMatches);
 searchInput.addEventListener('keyup', displayMatches);
