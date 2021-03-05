@@ -1,0 +1,51 @@
+body {
+  background:rgb(236, 190, 104);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+
+  .container {
+    min-height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    text-align:center;
+    justify-content: space-between;
+  }
+  
+
+
+h1 {
+  font-size: 30px;
+  color:rgb(255, 255, 255);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+ input {
+  width: 40%;
+  text-align: center;
+}
+
+
+  .cases li{
+    list-style-type: none;
+    color: white;
+    padding: 12px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    background: linear-gradient( rgb(255, 111, 145), rgb(132, 94, 194));
+    text-align: center;
+    width: 90%;
+    flex: 0 1 auto;
+  }
